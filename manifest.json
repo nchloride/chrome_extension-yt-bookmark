@@ -1,0 +1,23 @@
+{
+    "name":"yt-vid-bookmark",
+    "description":"A youtube extension that bookmarks your video an save in it your browser",
+    "version":"0.0.1",
+    "manifest_version":3,
+
+    "background":{
+        "service_worker":"background.js"
+    }
+    ,"host_permissions":["*://*.youtube.com/*"]
+    ,
+    "permissions":["storage","activeTab","tabs","webRequest"],
+     "action":{
+      "default_popup" : "popup.html"
+    },
+    "content_scripts": [
+        {
+          "matches": ["<all_urls>"],
+          "js": ["contentScript.js"]
+        }
+      ]
+
+}
