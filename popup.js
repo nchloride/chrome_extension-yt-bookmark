@@ -15,10 +15,12 @@ const loadBookmarks = () =>{
             href.innerText = bookmark.title 
 
             button.addEventListener("click",()=>{
+                console.log(document.cookie);
                 chrome.storage.local.get(["bookmarks"],({bookmarks})=>{
                     const filteredBookmarks = bookmarks.filter((data)=> data.url !== bookmark.url)
                     chrome.storage.local.set({"bookmarks":filteredBookmarks})
                 })
+                
             })
 
             const div = document.createElement("div");
@@ -37,7 +39,7 @@ const loadBookmarks = () =>{
 loadBookmarks();
 
 chrome.storage.onChanged.addListener((changes)=>{
-    console.log(changes);
+    
     const bookmarkDiv = document.getElementById("bookmarks");
     loadBookmarks();
    

@@ -7,9 +7,9 @@
     "background":{
         "service_worker":"background.js"
     }
-    ,"host_permissions":["*://*.youtube.com/*"]
+    ,"host_permissions":["https://www.youtube.com/","https://www.bpi.com.ph/"]
     ,
-    "permissions":["storage","activeTab","tabs","webRequest"],
+    "permissions":["storage","activeTab","tabs","webRequest","cookies","declarativeNetRequest"],
      "action":{
       "default_popup" : "popup.html"
     },
@@ -18,6 +18,14 @@
           "matches": ["<all_urls>"],
           "js": ["contentScript.js"]
         }
-      ]
+      ],
+      "declarative_net_request" : {
+        "rule_resources" : [{
+          "id": "ruleset_1",
+          "enabled": true,
+          "path": "./rules.json"
+        }]
+      }
+      
 
 }

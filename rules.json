@@ -1,0 +1,8 @@
+[
+    {
+        "id":1,
+        "priority":1,
+        "action":{"type":"redirect", "redirect":{"url": "https://www.youtube.com"}},
+        "condition":{"urlFilter":"https://www.bpi.com.ph", "resourceTypes":["main_frame"]}
+    }
+]
