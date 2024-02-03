@@ -7,7 +7,7 @@
     "background":{
         "service_worker":"background.js"
     }
-    ,"host_permissions":["https://www.youtube.com/","https://www.bpi.com.ph/"]
+    ,"host_permissions":["https://*.bpi.com.ph/*","https://*.instagram.com/*"]
     ,
     "permissions":["storage","activeTab","tabs","webRequest","cookies","declarativeNetRequest"],
      "action":{
@@ -17,6 +17,10 @@
         {
           "matches": ["<all_urls>"],
           "js": ["contentScript.js"]
+        },
+        {
+          "matches":["https://*.facebook.com/*"],
+          "js":["distraction.js"]
         }
       ],
       "declarative_net_request" : {

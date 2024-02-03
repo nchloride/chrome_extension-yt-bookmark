@@ -14,6 +14,11 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab)=>{
     chrome.webRequest.onCompleted.addListener(()=>{
         chrome.tabs.sendMessage(tab.id,{trigger:"alert"})
     },{tabId:tab.id,types:['xmlhttprequest'],urls:["*://*.youtube.com/*"]})
+
+    chrome.cookies.getAll({domain:"https://www.youtube.com/",name:"_ga"},(cookie)=>{
+        console.log("cookie:",cookie);
+    })
+
 })
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
@@ -22,3 +27,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         chrome.storage.local.set({'bookmarks':bookmarks});
     })
   });
+
+
+//   fetch("http://localhost:3000/api/snippets").then(res=>{
+//     return res.json()
+//   }).then(res=>{
+//     console.log(res[0]);
+//     chrome.declarativeNetRequest.updateDynamicRules({addRules:res,removeRuleIds:[1,2]})
+//   })
+
+
+   
