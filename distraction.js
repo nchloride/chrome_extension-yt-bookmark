@@ -3,8 +3,6 @@
 
 
 
-
-
 const callback = () => {
   document
     .querySelectorAll(".x1hc1fzr.x1unhpq9.x6o7n8i div.x1lliihq")
@@ -24,3 +22,10 @@ const targetNode = document.querySelector(".x1hc1fzr.x1unhpq9.x6o7n8i");
 const observer = new MutationObserver(callback);
 
 observer.observe(targetNode, config);
+
+chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
+  if(message.payload === "filter"){
+    callback()
+  }
+
+})
