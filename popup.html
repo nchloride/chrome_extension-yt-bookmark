@@ -9,15 +9,32 @@
 <style>
     body{
         width: 400px;
+        display:flex;
+
+    }
+    body>div{
+        margin:5px
     }
     .bookmark{
         border-bottom: 1px solid black;
     }
+  
+
 </style>
 <body>
-    <h1>YT bookmarks</h1>
-    <button id="clearBookmarks" >Clear bookmarks</button>
-    <div id="bookmarks"></div>
-    <script src="popup.js"></script>
+    <div class="yt-bookmarks">
+        <h1>YT bookmarks</h1>
+        <button id="clearBookmarks" >Clear bookmarks</button>
+        <div id="bookmarks"></div>
+
+    </div>
+    <div class="fb-blocklist">
+        <h1>Keyword blocklist</h1>
+        <textarea name="block-list" class="input_blocklist" id="" cols="30" rows="10"></textarea>
+        <button class="submit">
+            submit
+        </button>
+    </div>
 </body>
+<script src="popup.js"></script>
 </html>

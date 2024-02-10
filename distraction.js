@@ -2,16 +2,19 @@
 
 
 
-
-const callback = () => {
+const callback =  () => {
   document
     .querySelectorAll(".x1hc1fzr.x1unhpq9.x6o7n8i div.x1lliihq")
-    .forEach((div) => {
+    .forEach(async(div) => {
       if (div.classList.length == 1) {
-        if (div?.textContent.toLowerCase().includes("aerox")) {
-          div.style.display = "none";
-          console.log("has text");
-        }
+        const {blocklist} = await chrome.storage.local.get("blocklist");
+        const filter = blocklist.split("\n").filter(e=> e!="")
+        filter.forEach(e=>{
+          if (div?.textContent.toLowerCase().includes(e)) {
+            div.style.display = "none";
+            console.log("has text");
+          }
+        })
       }
     });
 };
@@ -23,9 +26,5 @@ const observer = new MutationObserver(callback);
 
 observer.observe(targetNode, config);
 
-chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
-  if(message.payload === "filter"){
-    callback()
-  }
 
-})
+

@@ -49,3 +49,14 @@ chrome.storage.onChanged.addListener((changes)=>{
 document.getElementById("clearBookmarks").addEventListener("click",()=>{
     chrome.storage.local.clear()
 })
+document.addEventListener("DOMContentLoaded",()=>{
+    chrome.storage.local.get("blocklist").then(e=>
+        document.querySelector(".input_blocklist").value = e.blocklist)
+})
+document.querySelector(".submit").addEventListener("click",()=>{
+    console.log(document.querySelector(".input_blocklist").value)
+    chrome.storage.local.set({"blocklist":document.querySelector(".input_blocklist").value})
+})
+document.querySelector(".input_blocklist").addEventListener("keyup",(e)=>{
+    chrome.storage.local.set({"blocklist":e.target.value})
+})
