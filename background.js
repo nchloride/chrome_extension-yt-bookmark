@@ -33,12 +33,16 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 chrome.webNavigation.onCompleted.addListener(function(details) {
- 
-  console.log(details)
+
+  if(details.url.includes("twitter")){
+    chrome.tabs.sendMessage(details.tabId,{ payload: "filter-tweet" });
+  } 
   if(details.url.includes("facebook")){
+
       chrome.tabs.sendMessage(details.tabId,{ payload: "filter" });
   }
 });
+
 //   fetch("http://localhost:3000/api/snippets").then(res=>{
 //     return res.json()
 //   }).then(res=>{
